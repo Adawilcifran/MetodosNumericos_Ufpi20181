@@ -2,8 +2,8 @@ package view;
 
 import java.util.Scanner;
 
-import control.ControladorMatriz;
 import model.Matriz;
+import control.ControladorMatriz;
 
 public class SistemaInterno {
 
@@ -14,14 +14,16 @@ public class SistemaInterno {
 	public static boolean init() {
 		int ordem = 0;
 		do {
-			System.out.print("Digite a ordem desejada para a matriz a ser inserida [0 para sair]: ");
+			System.out
+					.print("Digite a ordem desejada para a matriz a ser inserida [0 para sair]: ");
 			ordem = in.nextInt();
-			if (ordem != 0)
+			if (ordem != 0) {
 				cadastraMatriz(ordem);
-			cadastraTermosIndependentes(ordem);
-			ControladorMatriz.cadastrar(matriz, termosIndependentes, ordem);
-			System.out.println("Cadastro Realizado com sucesso.");
-			imprimirMatriz();
+				cadastraTermosIndependentes(ordem);
+				ControladorMatriz.cadastrar(matriz, termosIndependentes, ordem);
+				System.out.println("Cadastro Realizado com sucesso.");
+				imprimirMatriz();
+			}
 		} while (ordem != 0);
 		return true;
 	}
@@ -29,21 +31,27 @@ public class SistemaInterno {
 	private static void imprimirMatriz() {
 		System.out.println("------------ EXIBINDO MATRIZ ---------- ");
 		Matriz matriz = ControladorMatriz.getMatriz();
-		double[][] _matriz_ = matriz.getMatriz();
-		int ordem = matriz.getOrdem();
-		for (int i = 0; i < ordem; i++) {
-			for (int j = 0; j < ordem; j++) {
-//PAREI AQUI
+		double[][] matrizRepo = matriz.getMatriz();
+		double[] vetorDosTermosRepo = matriz.getTermosIndependentes();
+		int ordemRepo = matriz.getOrdem();
+
+		for (int i = 0; i < ordemRepo; i++) {
+			System.out.print("|\t");
+			for (int j = 0; j < ordemRepo; j++) {
+				System.out.print(matrizRepo[i][j] + "\t");
 			}
+			System.out.println(":\t" + vetorDosTermosRepo[i] + "\t|");
 		}
 
 	}
 
 	private static void cadastraTermosIndependentes(int ordem) {
 		termosIndependentes = new double[ordem];
-		System.out.println("\t\t --------- CADASTRO DO VETOR DE TERMOS INDEPENDENTES ---------");
+		System.out
+				.println("\t\t --------- CADASTRO DO VETOR DE TERMOS INDEPENDENTES ---------");
 		for (int i = 0; i < ordem; i++) {
-			System.out.printf("Digite o valor do elemento X[%d][%d] do vetor: ", (i + 1));
+			System.out.printf("Digite o valor do elemento B[%d] do vetor: ",
+					(i + 1));
 			termosIndependentes[i] = in.nextDouble();
 		}
 		System.out.println("Fim do cadastro do vetor de termos independentes.");
@@ -51,11 +59,14 @@ public class SistemaInterno {
 	}
 
 	private static void cadastraMatriz(int ordem) {
-		System.out.println("\t\t --------- CADASTRO DA MATRIZ DOS COEFICIENTES ---------");
+		System.out
+				.println("\t\t --------- CADASTRO DA MATRIZ DOS COEFICIENTES ---------");
 		matriz = new double[ordem][ordem];
 		for (int i = 0; i < ordem; i++) {
 			for (int j = 0; j < ordem; j++) {
-				System.out.printf("Digite o valor do elemento X[%d][%d] da matriz: ", (i + 1), (j + 1));
+				System.out.printf(
+						"Digite o valor do elemento X[%d][%d] da matriz: ",
+						(i + 1), (j + 1));
 				matriz[i][j] = in.nextDouble();
 			}
 		}
