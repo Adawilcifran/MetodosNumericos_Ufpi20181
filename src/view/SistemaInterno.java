@@ -29,7 +29,7 @@ public class SistemaInterno {
 	}
 
 	private static void imprimirMatriz() {
-		System.out.println("------------ EXIBINDO MATRIZ ---------- ");
+		System.out.println("\n\n\n------------ EXIBINDO MATRIZ ------------ ");
 		Matriz matriz = ControladorMatriz.getMatriz();
 		double[][] matrizRepo = matriz.getMatriz();
 		double[] vetorDosTermosRepo = matriz.getTermosIndependentes();
@@ -42,6 +42,8 @@ public class SistemaInterno {
 			}
 			System.out.println(":\t" + vetorDosTermosRepo[i] + "\t|");
 		}
+		System.out.println("----------------------------------------- \n\n\n");
+
 
 	}
 
